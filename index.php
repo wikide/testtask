@@ -6,14 +6,6 @@ define('DB_NAME','tasktest');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
 
-
-// Если нажали кнопку выхода
-if(isset($_GET['logout']))
-{
-    // Убиваем сессию и удаляем куки
-    // Перенаправляем на форму входа
-}
-
 function get_db()
 {
     $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -34,7 +26,6 @@ if(isset($_COOKIE['auth']))
     }
 }
 
-// ОТправка формы
 if(count($_POST)) {
 
     $post_data = json_decode(array_keys($_POST)[0]);
@@ -341,8 +332,8 @@ function get_data_instagram($nickname)
                             document.getElementById('data_inst').classList.add('show');
                             document.getElementById('data_inst_name').classList.remove('none');
                             document.getElementById('data_inst_name').classList.add('show');
-                            document.getElementById('data_inst_name').classList.remove('none');
-                            document.getElementById('data_inst_name').classList.add('show');
+                            document.getElementById('data_inst_photo').classList.remove('none');
+                            document.getElementById('data_inst_photo').classList.add('show');
                         }
 
                         setTimeout(function () {
@@ -364,7 +355,7 @@ function get_data_instagram($nickname)
     };
     var logout = document.getElementById('logout');
     logout.onclick = function () {
-        document.cookie = 'auth=;expires=Thu, 31 Dec 1999 00:00:00 UTC; path=/';
+        document.cookie = 'auth=;expires=Thu, 31 Dec 1999 00:00:00 UTC;';
         document.title = 'Форма авторизации';
         document.getElementById('profile').classList.remove('show');
         document.getElementById('profile').classList.add('none');
